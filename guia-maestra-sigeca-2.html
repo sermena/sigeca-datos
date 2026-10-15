@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía Maestra SIGECA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================
+   Guía Maestra de Documentos — SIGECA (prototipo conceptual)
+   Todo el estilo está acotado a .gmd para poder incrustarlo
+   en una página existente sin afectar el resto del sitio.
+   ========================================================== */
+body{margin:0;background:#f4f6f9}
+.gmd{
+  /* Identidad TEC: azul PANTONE 295C (#002855), rojo PANTONE 032C (#EF3340), tipografía Roboto */
+  --azul:#002855; --azul2:#0B4A8B; --rojo:#EF3340; --celeste:#8FA3BC; --turquesa:#EF3340;
+  --texto:#4D4D4D; --titulo:#002855; --suave:#6B6B6B; --borde:#E3E6EA; --fondo:#F5F6F8; --tarjeta:#ffffff;
+  --ok:#2E7D4F; --warn:#9A5B00; --bad:#C4202E;
+  --na:#6B6B6B; --na-bg:#EEF0F3;
+  font-family:Roboto,Arial,Helvetica,sans-serif;
+  color:var(--texto); background:var(--fondo); font-size:15px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.gmd *,.gmd *::before,.gmd *::after{box-sizing:border-box}
+.gmd button{font:inherit;color:inherit}
+.gmd .wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+
+/* Encabezado */
+.gmd .hero{background:var(--azul);color:#fff;padding:30px 0 34px;border-bottom:4px solid var(--rojo)}
+.gmd .proto{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);
+  border-radius:999px;padding:3px 11px;font-size:12px;font-weight:600;letter-spacing:.02em}
+.gmd .proto::before{content:"";width:7px;height:7px;border-radius:50%;background:#FFC857}
+.gmd .eyebrow{margin:16px 0 6px;font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#C9D4E3}
+.gmd h1{margin:0;font-size:clamp(24px,3.6vw,34px);line-height:1.15;font-weight:700;text-transform:uppercase;letter-spacing:.01em}
+.gmd .lead{margin:10px 0 22px;max-width:720px;color:#D5DEEA}
+.gmd .search{position:relative;max-width:820px}
+.gmd .search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:22px;height:22px;color:var(--suave);pointer-events:none}
+.gmd .search input{width:100%;border:0;border-radius:10px;padding:16px 92px 16px 50px;font:inherit;font-size:17px;color:var(--texto);
+  background:#fff;box-shadow:0 6px 24px rgba(0,20,40,.25);outline:none}
+.gmd .search input:focus{box-shadow:0 0 0 3px var(--turquesa),0 6px 24px rgba(0,20,40,.25)}
+.gmd .search .clear{position:absolute;right:10px;top:50%;transform:translateY(-50%);border:0;background:var(--na-bg);border-radius:7px;
+  padding:6px 10px;font-size:13px;cursor:pointer;display:none}
+.gmd .search.has-q .clear{display:block}
+.gmd .ejemplos{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:#C9D4E3}
+.gmd .ejemplos button{border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;border-radius:999px;padding:3px 11px;cursor:pointer;font-size:13px}
+.gmd .ejemplos button:hover{background:rgba(255,255,255,.14)}
+
+/* Cuerpo */
+.gmd .layout{display:grid;grid-template-columns:260px 1fr;gap:24px;padding:28px 0 40px;align-items:start}
+.gmd .filters{background:var(--tarjeta);border:1px solid var(--borde);border-radius:8px;padding:6px 16px 12px;position:sticky;top:12px}
+.gmd .filters h2{font-size:15px;font-weight:700;color:var(--titulo);margin:10px 0 2px;display:flex;justify-content:space-between;align-items:center}
+.gmd .filters h2 button{border:0;background:none;color:var(--azul2);font-size:13px;cursor:pointer;padding:0}
+.gmd fieldset{border:0;border-top:1px solid var(--borde);margin:10px 0 0;padding:10px 0 0}
+.gmd legend{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--suave);padding:0;margin-bottom:4px}
+.gmd .opt{display:flex;align-items:flex-start;gap:8px;padding:3px 0;font-size:14px;cursor:pointer}
+.gmd .opt input{margin:4px 0 0;accent-color:var(--azul2)}
+.gmd .opt .n{margin-left:auto;color:var(--suave);font-size:12px;padding-top:2px}
+.gmd .opt.zero{opacity:.45}
+.gmd .dot{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:2px;vertical-align:1px}
+.gmd .toggle-filters{display:none}
+
+.gmd .bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:10px}
+.gmd .count{font-weight:600}
+.gmd .count small{font-weight:400;color:var(--suave)}
+.gmd select{font:inherit;font-size:14px;border:1px solid var(--borde);border-radius:7px;padding:6px 8px;background:#fff;color:var(--texto)}
+.gmd .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.gmd .chip{border:1px solid var(--borde);background:#fff;border-radius:999px;padding:3px 10px;font-size:13px;cursor:pointer}
+.gmd .chip::after{content:" ×";color:var(--suave)}
+.gmd .chip.all{border:0;background:none;color:var(--azul2)}
+.gmd .chip.all::after{content:""}
+.gmd .note{background:#EEF2F7;border:1px solid #D5DEEA;border-radius:8px;padding:8px 12px;font-size:14px;margin-bottom:12px}
+
+/* Lista de resultados: filas sobrias separadas por líneas finas */
+.gmd .list{background:var(--tarjeta);border:1px solid var(--borde);border-radius:8px;overflow:hidden}
+.gmd .card{display:block;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--borde);
+  padding:14px 20px 15px;cursor:pointer;position:relative;transition:background .12s}
+.gmd .card:first-child{border-top:0}
+.gmd .card:hover,.gmd .card:focus-visible{background:#F3F6FA;outline:none}
+.gmd .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:transparent;transition:background .12s}
+.gmd .card:hover::before{background:var(--azul)}
+.gmd .card:focus-visible::before{background:var(--rojo)}
+.gmd .top{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--suave)}
+.gmd .code{font-weight:700;color:var(--azul2);letter-spacing:.03em;font-variant-numeric:tabular-nums}
+.gmd .sep{color:#B5BCC6}
+.gmd .estado{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:500;letter-spacing:0;text-transform:none;white-space:nowrap}
+.gmd .estado::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
+.gmd .e-vigente{color:var(--suave)} .gmd .e-vigente::before{background:var(--ok)}
+.gmd .e-proximo{color:var(--warn)} .gmd .e-vencido{color:var(--bad)} .gmd .e-na{display:none}
+.gmd .card h3{margin:4px 0 3px;font-size:16.5px;font-weight:500;line-height:1.35;color:var(--titulo)}
+.gmd .meta{font-size:13.5px;color:var(--suave)}
+.gmd .meta span+span{white-space:nowrap}
+.gmd .meta span+span::before{content:"·";margin:0 7px;color:#B5BCC6}
+.gmd mark{background:#FFE9A8;color:inherit;border-radius:2px;padding:0 1px}
+.gmd .more{display:block;margin:14px auto 0;border:1px solid var(--borde);background:#fff;border-radius:8px;padding:8px 18px;cursor:pointer}
+.gmd .empty{background:#fff;border:1px dashed var(--borde);border-radius:10px;padding:30px;text-align:center;color:var(--suave)}
+
+/* Ficha del documento */
+.gmd .overlay{position:fixed;inset:0;background:rgba(10,25,40,.45);display:none;z-index:1000}
+.gmd .overlay.open{display:block}
+.gmd .drawer{position:fixed;top:0;right:0;bottom:0;width:min(600px,100%);background:#fff;z-index:1001;transform:translateX(100%);
+  transition:transform .22s ease;overflow-y:auto;box-shadow:-10px 0 30px rgba(0,0,0,.15)}
+.gmd .drawer.open{transform:none}
+.gmd .dhead{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--borde);padding:12px 18px;display:flex;align-items:center;gap:8px;z-index:2}
+.gmd .dhead .x{margin-left:auto;border:0;background:var(--na-bg);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:18px}
+.gmd .back{border:0;background:none;color:var(--azul2);cursor:pointer;padding:4px 6px;font-size:14px}
+.gmd .dbody{padding:16px 18px 30px}
+.gmd .dbody h2{margin:6px 0 6px;font-size:22px;line-height:1.25;color:var(--azul)}
+.gmd .aviso{font-size:14px;margin:0 0 12px}
+.gmd .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin:12px 0;padding:12px 14px;background:var(--fondo);border-radius:10px}
+.gmd .grid div span{display:block;font-size:12px;color:var(--suave)}
+.gmd .grid div b{font-weight:600;font-size:14px}
+.gmd .kw{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px}
+.gmd .kw span{background:#EEF2F7;color:var(--azul);font-size:12px;border-radius:999px;padding:2px 10px}
+.gmd .acts{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 4px}
+.gmd .btn{border:1px solid var(--azul);background:var(--azul);color:#fff;border-radius:6px;padding:8px 14px;cursor:pointer;font-weight:500;font-size:14px}
+.gmd .btn.sec{background:#fff;color:var(--azul)}
+.gmd .hint{font-size:12px;color:var(--suave);margin:2px 0 0}
+.gmd h4{margin:22px 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--suave)}
+.gmd .map{border:1px solid var(--borde);border-radius:10px;padding:6px;background:#fbfcfd}
+.gmd .map svg{display:block;width:100%;height:auto}
+.gmd .map g.node{cursor:pointer}
+.gmd .map g.node:hover rect,.gmd .map g.node:focus rect{stroke:#1d2733;stroke-width:2}
+.gmd .map g.node:focus{outline:none}
+.gmd .legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--suave);padding:6px 6px 2px}
+.gmd .rel{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;border:1px solid var(--borde);border-radius:8px;background:#fff;
+  padding:8px 10px;margin-bottom:6px;cursor:pointer}
+.gmd .rel:hover{border-color:var(--celeste)}
+.gmd .rel b{display:block;font-size:14px;font-weight:500;color:var(--titulo)}
+.gmd .rel small{color:var(--suave)}
+.gmd .rel .estado{flex:none;margin-top:2px}
+
+.gmd .about{border-top:1px solid var(--borde);padding:18px 0 34px;color:var(--suave);font-size:14px}
+.gmd .about summary{cursor:pointer;font-weight:600;color:var(--azul)}
+.gmd .about ol{padding-left:20px}
+.gmd .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--azul);color:#fff;padding:8px 16px;border-radius:8px;
+  font-size:14px;z-index:1100;opacity:0;transition:opacity .2s;pointer-events:none}
+.gmd .toast.show{opacity:1}
+.gmd .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+@media (max-width:860px){
+  .gmd .layout{grid-template-columns:1fr}
+  .gmd .filters{position:static;display:none}
+  .gmd .filters.open{display:block}
+  .gmd .toggle-filters{display:inline-flex;gap:6px;align-items:center;border:1px solid var(--borde);background:#fff;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:14px}
+}
+@media (max-width:520px){
+  .gmd .grid{grid-template-columns:1fr}
+  .gmd .card{padding:13px 16px 14px}
+  .gmd .search input{font-size:16px;padding-right:80px}
+}
+</style>
+</head>
+<body>
+<div class="gmd" id="sigeca-gmd">
+
+  <header class="hero">
+    <div class="wrap">
+      <span class="proto">Prototipo conceptual · datos de ejemplo</span>
+      <p class="eyebrow">SIGECA · Sistema Institucional de Gestión de Calidad</p>
+      <h1>Guía maestra de documentos</h1>
+      <p class="lead">Busque procedimientos, guías, manuales, formularios y normativa, y vea con qué otros documentos se relaciona cada uno.</p>
+      <div class="search" id="searchBox">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <label class="sr" for="q">Buscar documentos</label>
+        <input id="q" type="search" autocomplete="off" placeholder="Código, nombre o palabra clave…">
+        <button class="clear" id="clearQ" type="button">Limpiar</button>
+      </div>
+      <div class="ejemplos" id="ejemplos"><span>Pruebe:</span></div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="layout">
+      <aside class="filters" id="filters" aria-label="Filtros"></aside>
+
+      <main>
+        <div class="bar">
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <button class="toggle-filters" id="toggleFilters" type="button" aria-expanded="false">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h18M6 12h12M10 19h4"/></svg>Filtros
+            </button>
+            <div class="count" id="count" aria-live="polite"></div>
+          </div>
+          <label>
+            <span class="sr">Ordenar por</span>
+            <select id="orden">
+              <option value="relevancia">Más relevantes</option>
+              <option value="codigo">Código</option>
+              <option value="titulo">Nombre (A–Z)</option>
+              <option value="revision">Próxima revisión</option>
+            </select>
+          </label>
+        </div>
+        <div class="chips" id="chips"></div>
+        <div id="results"></div>
+      </main>
+    </div>
+
+    <section class="about">
+      <details>
+        <summary>¿Cómo funciona este prototipo?</summary>
+        <ol>
+          <li>Cada documento del SIGECA se registra una sola vez en una <b>lista maestra</b> (código, nombre, tipo, dependencia, proceso, versión, fechas, palabras clave y enlace al archivo oficial).</li>
+          <li>Una segunda tabla registra las <b>relaciones</b>: qué normativa fundamenta cada procedimiento y qué guías, manuales, formularios u otros procedimientos utiliza.</li>
+          <li>La lista se exporta a un archivo de datos (JSON) que esta página carga. La búsqueda ocurre en el navegador: no ignora tildes, tolera errores de digitación y pondera más el código y el nombre.</li>
+          <li>El estado (vigente, próximo a vencer, revisión vencida) se calcula con la fecha de próxima revisión; el aviso se activa 90 días antes.</li>
+          <li>Todo el código está acotado a un solo contenedor, por lo que puede insertarse como bloque o <i>iframe</i> en el sitio web institucional.</li>
+        </ol>
+        <p>Los códigos, documentos y relaciones mostrados son ficticios y solo ilustran el funcionamiento.</p>
+      </details>
+    </section>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dTitle" aria-hidden="true"></aside>
+  <div class="toast" id="toast" role="status"></div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------- Configuración ---------- */
+// En producción: ruta al archivo exportado desde la lista maestra (p. ej. "documentos.json").
+// Si es null, se usan los datos de ejemplo incluidos abajo.
+var DATA_URL = null;
+var DIAS_AVISO = 90;       // días antes de la próxima revisión para marcar "próximo a vencer"
+var POR_PAGINA = 20;
+
+var TIPOS = {
+  PR:{label:"Procedimiento", plural:"Procedimientos", color:"#003B5C"},
+  PO:{label:"Política", plural:"Políticas", color:"#6A4C93"},
+  MA:{label:"Manual", plural:"Manuales", color:"#4A90A4"},
+  GU:{label:"Guía", plural:"Guías", color:"#00508C"},
+  IN:{label:"Instructivo", plural:"Instructivos", color:"#008C97"},
+  FO:{label:"Formulario o registro", plural:"Formularios y registros", color:"#5F6F82"},
+  NO:{label:"Normativa", plural:"Normativa", color:"#A65E1E"}
+};
+var GRUPOS_REL = [
+  ["NO","Normativa que lo fundamenta"],["PO","Políticas aplicables"],["PR","Procedimientos relacionados"],
+  ["MA","Manuales"],["GU","Guías"],["IN","Instructivos"],["FO","Formularios y registros"]
+];
+var ESTADOS = {
+  vigente:{label:"Vigente"}, proximo:{label:"Próximo a vencer"}, vencido:{label:"Revisión vencida"}, na:{label:"Sin vencimiento"}
+};
+
+/* ---------- Datos de ejemplo (estructura propuesta) ---------- */
+var EJEMPLO = {
+  dependencias:{
+    OPI:"Oficina de Planificación Institucional",
+    GTH:"Departamento de Gestión del Talento Humano",
+    DBGS:"Departamento de Becas y Gestión Social",
+    DAR:"Departamento de Admisión y Registro",
+    DFC:"Departamento Financiero Contable",
+    PROV:"Proveeduría Institucional",
+    DATIC:"Departamento de Administración de Tecnologías de Información y Comunicaciones",
+    CI:"Consejo Institucional",
+    EXT:"Normativa nacional"
+  },
+  documentos:[
+    {codigo:"PR-OPI-001",titulo:"Elaboración, revisión y aprobación de documentos del SIGECA",tipo:"PR",dependencia:"OPI",proceso:"Planificación y calidad",version:"3",fecha_aprobacion:"2025-03-10",proxima_revision:"2027-03-10",palabras_clave:["control documental","información documentada","aprobación","versiones"],resumen:"Define cómo se elabora, revisa, aprueba, codifica y publica cualquier documento del sistema de calidad."},
+    {codigo:"PR-OPI-002",titulo:"Control de cambios y retiro de documentos obsoletos",tipo:"PR",dependencia:"OPI",proceso:"Planificación y calidad",version:"2",fecha_aprobacion:"2024-11-20",proxima_revision:"2026-11-20",palabras_clave:["obsoleto","historial de versiones","cambios"],resumen:"Establece cómo registrar cambios a un documento vigente y retirar de circulación las versiones anteriores."},
+    {codigo:"GU-OPI-001",titulo:"Guía para la redacción de procedimientos institucionales",tipo:"GU",dependencia:"OPI",proceso:"Planificación y calidad",version:"4",fecha_aprobacion:"2025-06-02",proxima_revision:"2027-06-02",palabras_clave:["plantilla","redacción","diagrama de flujo","formato"],resumen:"Orienta a las dependencias sobre la estructura, el lenguaje y los diagramas que debe tener un procedimiento."},
+    {codigo:"MA-OPI-001",titulo:"Manual del Sistema Institucional de Gestión de Calidad (SIGECA)",tipo:"MA",dependencia:"OPI",proceso:"Planificación y calidad",version:"2",fecha_aprobacion:"2025-01-15",proxima_revision:"2027-01-15",palabras_clave:["calidad","gestión de riesgos","gestión para resultados","control interno"],resumen:"Describe el alcance, los enfoques y la estructura documental del sistema de calidad institucional."},
+    {codigo:"FO-OPI-001",titulo:"Solicitud de creación o modificación de documento",tipo:"FO",dependencia:"OPI",proceso:"Planificación y calidad",version:"2",fecha_aprobacion:"2025-03-10",proxima_revision:"2027-03-10",palabras_clave:["solicitud","cambio documental"],resumen:"Formulario con el que una dependencia pide crear, modificar o retirar un documento del sistema."},
+    {codigo:"FO-OPI-002",titulo:"Registro de revisión de procedimientos",tipo:"FO",dependencia:"OPI",proceso:"Planificación y calidad",version:"1",fecha_aprobacion:"2024-05-08",proxima_revision:"2026-05-08",palabras_clave:["revisión","observaciones","bitácora"],resumen:"Registro donde la persona revisora anota observaciones y el resultado de la revisión técnica."},
+    {codigo:"PR-OPI-005",titulo:"Valoración de riesgos institucionales (SEVRI)",tipo:"PR",dependencia:"OPI",proceso:"Planificación y calidad",version:"3",fecha_aprobacion:"2024-08-12",proxima_revision:"2026-08-12",palabras_clave:["SEVRI","riesgos","valoración","matriz de riesgos"],resumen:"Describe la identificación, análisis, evaluación y seguimiento de los riesgos de cada dependencia."},
+    {codigo:"IN-OPI-001",titulo:"Instructivo para el uso de la matriz de riesgos",tipo:"IN",dependencia:"OPI",proceso:"Planificación y calidad",version:"1",fecha_aprobacion:"2025-09-01",proxima_revision:"2027-09-01",palabras_clave:["matriz de riesgos","probabilidad","impacto"],resumen:"Explica paso a paso cómo completar la matriz de riesgos y calcular el nivel de riesgo."},
+
+    {codigo:"PR-GTH-003",titulo:"Reclutamiento y selección de personal",tipo:"PR",dependencia:"GTH",proceso:"Gestión del talento humano",version:"5",fecha_aprobacion:"2025-02-17",proxima_revision:"2027-02-17",palabras_clave:["concurso","plaza","nombramiento","selección"],resumen:"Regula las etapas de un concurso de antecedentes, desde la publicación de la plaza hasta el nombramiento."},
+    {codigo:"PR-GTH-007",titulo:"Trámite de vacaciones del personal",tipo:"PR",dependencia:"GTH",proceso:"Gestión del talento humano",version:"2",fecha_aprobacion:"2023-10-05",proxima_revision:"2025-10-05",palabras_clave:["vacaciones","permisos","saldo de días"],resumen:"Indica cómo solicitar, aprobar y registrar las vacaciones de las personas funcionarias."},
+    {codigo:"GU-GTH-002",titulo:"Guía para la presentación de atestados",tipo:"GU",dependencia:"GTH",proceso:"Gestión del talento humano",version:"1",fecha_aprobacion:"2025-04-01",proxima_revision:"2027-04-01",palabras_clave:["atestados","títulos","experiencia"],resumen:"Orienta a las personas oferentes sobre qué documentos presentar y cómo acreditarlos."},
+    {codigo:"FO-GTH-010",titulo:"Solicitud de vacaciones",tipo:"FO",dependencia:"GTH",proceso:"Gestión del talento humano",version:"3",fecha_aprobacion:"2024-01-05",proxima_revision:"2027-01-05",palabras_clave:["vacaciones","solicitud"],resumen:"Formulario para pedir días de vacaciones con el visto bueno de la jefatura."},
+    {codigo:"NO-CI-014",titulo:"Reglamento de concursos de antecedentes internos y externos del personal",tipo:"NO",dependencia:"CI",proceso:"Gestión del talento humano",version:"—",fecha_aprobacion:"",proxima_revision:null,palabras_clave:["reglamento","concursos","personal"],resumen:"Normativa interna que regula los concursos para ocupar plazas."},
+    {codigo:"NO-EXT-002",titulo:"Código de Trabajo",tipo:"NO",dependencia:"EXT",proceso:"Gestión del talento humano",version:"—",fecha_aprobacion:"",proxima_revision:null,palabras_clave:["ley","relaciones laborales"],resumen:"Normativa nacional que regula las relaciones laborales."},
+
+    {codigo:"PR-DBGS-001",titulo:"Asignación de becas socioeconómicas",tipo:"PR",dependencia:"DBGS",proceso:"Vida estudiantil",version:"4",fecha_aprobacion:"2025-07-14",proxima_revision:"2027-07-14",palabras_clave:["beca","estudio socioeconómico","estudiantes"],resumen:"Describe la recepción de solicitudes, el estudio socioeconómico y la asignación de la categoría de beca."},
+    {codigo:"PR-DBGS-004",titulo:"Renovación de becas y verificación de rendimiento académico",tipo:"PR",dependencia:"DBGS",proceso:"Vida estudiantil",version:"2",fecha_aprobacion:"2024-12-02",proxima_revision:"2026-12-02",palabras_clave:["beca","renovación","rendimiento académico"],resumen:"Establece cómo se verifica cada periodo que la persona becada mantiene los requisitos."},
+    {codigo:"MA-DBGS-001",titulo:"Manual de criterios para el estudio socioeconómico",tipo:"MA",dependencia:"DBGS",proceso:"Vida estudiantil",version:"3",fecha_aprobacion:"2025-02-03",proxima_revision:"2027-02-03",palabras_clave:["estudio socioeconómico","criterios","puntaje"],resumen:"Reúne los criterios y ponderaciones utilizados para valorar la condición socioeconómica."},
+    {codigo:"FO-DBGS-003",titulo:"Solicitud de beca socioeconómica",tipo:"FO",dependencia:"DBGS",proceso:"Vida estudiantil",version:"5",fecha_aprobacion:"2025-07-14",proxima_revision:"2027-07-14",palabras_clave:["beca","solicitud","estudiantes"],resumen:"Formulario que completa la persona estudiante para solicitar beca."},
+    {codigo:"NO-CI-022",titulo:"Reglamento de becas y préstamos estudiantiles",tipo:"NO",dependencia:"CI",proceso:"Vida estudiantil",version:"—",fecha_aprobacion:"",proxima_revision:null,palabras_clave:["reglamento","becas","préstamos"],resumen:"Normativa interna que regula el sistema de becas y préstamos."},
+
+    {codigo:"PR-DAR-002",titulo:"Matrícula ordinaria de cursos",tipo:"PR",dependencia:"DAR",proceso:"Gestión académica",version:"6",fecha_aprobacion:"2025-05-20",proxima_revision:"2027-05-20",palabras_clave:["matrícula","cursos","periodo lectivo"],resumen:"Describe la preparación, ejecución y cierre del proceso de matrícula ordinaria."},
+    {codigo:"PR-DAR-006",titulo:"Emisión de certificaciones y constancias académicas",tipo:"PR",dependencia:"DAR",proceso:"Gestión académica",version:"3",fecha_aprobacion:"2024-09-30",proxima_revision:"2026-09-30",palabras_clave:["certificación","constancia","historial académico"],resumen:"Indica cómo se solicitan, emiten y entregan las certificaciones de notas y constancias."},
+    {codigo:"IN-DAR-001",titulo:"Instructivo de matrícula en línea para estudiantes",tipo:"IN",dependencia:"DAR",proceso:"Gestión académica",version:"2",fecha_aprobacion:"2025-05-20",proxima_revision:"2027-05-20",palabras_clave:["matrícula en línea","estudiantes","pasos"],resumen:"Guía paso a paso para que la persona estudiante realice su matrícula en el sistema."},
+    {codigo:"NO-CI-008",titulo:"Reglamento del Régimen de Enseñanza-Aprendizaje",tipo:"NO",dependencia:"CI",proceso:"Gestión académica",version:"—",fecha_aprobacion:"",proxima_revision:null,palabras_clave:["reglamento","RREA","evaluación","matrícula"],resumen:"Normativa interna sobre matrícula, evaluación y permanencia de estudiantes."},
+
+    {codigo:"PR-DFC-002",titulo:"Pago a proveedores",tipo:"PR",dependencia:"DFC",proceso:"Gestión financiera",version:"4",fecha_aprobacion:"2025-08-04",proxima_revision:"2027-08-04",palabras_clave:["pago","factura","tesorería"],resumen:"Establece la recepción de facturas, su verificación y la programación del pago."},
+    {codigo:"PR-DFC-005",titulo:"Liquidación de viáticos y gastos de viaje",tipo:"PR",dependencia:"DFC",proceso:"Gestión financiera",version:"2",fecha_aprobacion:"2024-12-20",proxima_revision:"2026-12-20",palabras_clave:["viáticos","gira","kilometraje","adelanto"],resumen:"Indica cómo liquidar adelantos y gastos de viaje dentro y fuera del país."},
+    {codigo:"FO-DFC-004",titulo:"Liquidación de viáticos",tipo:"FO",dependencia:"DFC",proceso:"Gestión financiera",version:"3",fecha_aprobacion:"2024-12-20",proxima_revision:"2027-06-20",palabras_clave:["viáticos","liquidación","gira"],resumen:"Formulario para detallar los gastos de una gira y adjuntar comprobantes."},
+    {codigo:"NO-EXT-005",titulo:"Reglamento de gastos de viaje y de transporte para funcionarios públicos",tipo:"NO",dependencia:"EXT",proceso:"Gestión financiera",version:"—",fecha_aprobacion:"",proxima_revision:null,palabras_clave:["viáticos","Contraloría","tarifas"],resumen:"Normativa nacional que fija las reglas y tarifas de viáticos."},
+
+    {codigo:"PR-PROV-001",titulo:"Contratación pública de bienes y servicios",tipo:"PR",dependencia:"PROV",proceso:"Contratación pública",version:"3",fecha_aprobacion:"2025-01-30",proxima_revision:"2027-01-30",palabras_clave:["licitación","SICOP","compra","contratación"],resumen:"Describe las etapas de una contratación, desde la decisión inicial hasta la recepción del bien o servicio."},
+    {codigo:"GU-PROV-001",titulo:"Guía para la elaboración de especificaciones técnicas",tipo:"GU",dependencia:"PROV",proceso:"Contratación pública",version:"2",fecha_aprobacion:"2025-04-22",proxima_revision:"2027-04-22",palabras_clave:["especificaciones","cartel","requisitos técnicos"],resumen:"Orienta a las dependencias para describir correctamente lo que necesitan comprar."},
+    {codigo:"NO-EXT-001",titulo:"Ley General de Contratación Pública N.° 9986",tipo:"NO",dependencia:"EXT",proceso:"Contratación pública",version:"—",fecha_aprobacion:"",proxima_revision:null,palabras_clave:["ley","contratación","compras públicas"],resumen:"Normativa nacional que regula la actividad de contratación del sector público."},
+
+    {codigo:"PR-DATIC-003",titulo:"Gestión de solicitudes de soporte técnico",tipo:"PR",dependencia:"DATIC",proceso:"Tecnologías de información",version:"2",fecha_aprobacion:"2025-10-01",proxima_revision:"2027-10-01",palabras_clave:["soporte","incidentes","mesa de servicio"],resumen:"Describe el registro, la atención y el cierre de solicitudes de soporte tecnológico."},
+    {codigo:"PO-DATIC-001",titulo:"Política de seguridad de la información",tipo:"PO",dependencia:"DATIC",proceso:"Tecnologías de información",version:"1",fecha_aprobacion:"2024-03-15",proxima_revision:"2026-03-15",palabras_clave:["seguridad","contraseñas","datos personales","ciberseguridad"],resumen:"Define los principios y responsabilidades para proteger la información institucional."},
+    {codigo:"NO-EXT-003",titulo:"Ley de Protección de la Persona frente al Tratamiento de sus Datos Personales N.° 8968",tipo:"NO",dependencia:"EXT",proceso:"Tecnologías de información",version:"—",fecha_aprobacion:"",proxima_revision:null,palabras_clave:["ley","datos personales","privacidad"],resumen:"Normativa nacional sobre el tratamiento de datos personales."},
+    {codigo:"NO-EXT-004",titulo:"Ley General de Control Interno N.° 8292",tipo:"NO",dependencia:"EXT",proceso:"Planificación y calidad",version:"—",fecha_aprobacion:"",proxima_revision:null,palabras_clave:["ley","control interno","riesgos"],resumen:"Normativa nacional que establece los componentes del sistema de control interno."}
+  ],
+  // origen -> destino: "el documento de origen se fundamenta en / utiliza / se relaciona con el de destino"
+  relaciones:[
+    ["PR-OPI-001","NO-EXT-004"],["PR-OPI-001","MA-OPI-001"],["PR-OPI-001","GU-OPI-001"],["PR-OPI-001","FO-OPI-001"],["PR-OPI-001","FO-OPI-002"],["PR-OPI-001","PR-OPI-002"],
+    ["PR-OPI-002","PR-OPI-001"],["PR-OPI-002","FO-OPI-001"],["PR-OPI-002","MA-OPI-001"],
+    ["GU-OPI-001","PR-OPI-001"],
+    ["MA-OPI-001","NO-EXT-004"],["MA-OPI-001","PR-OPI-005"],
+    ["PR-OPI-005","NO-EXT-004"],["PR-OPI-005","IN-OPI-001"],["PR-OPI-005","MA-OPI-001"],
+    ["PR-GTH-003","NO-CI-014"],["PR-GTH-003","NO-EXT-002"],["PR-GTH-003","GU-GTH-002"],
+    ["PR-GTH-007","NO-EXT-002"],["PR-GTH-007","FO-GTH-010"],
+    ["PR-DBGS-001","NO-CI-022"],["PR-DBGS-001","MA-DBGS-001"],["PR-DBGS-001","FO-DBGS-003"],["PR-DBGS-001","PR-DAR-002"],
+    ["PR-DBGS-004","NO-CI-022"],["PR-DBGS-004","PR-DBGS-001"],["PR-DBGS-004","PR-DAR-006"],["PR-DBGS-004","NO-CI-008"],
+    ["PR-DAR-002","NO-CI-008"],["PR-DAR-002","IN-DAR-001"],
+    ["PR-DAR-006","NO-CI-008"],["PR-DAR-006","NO-EXT-003"],
+    ["PR-DFC-002","PR-PROV-001"],["PR-DFC-002","NO-EXT-001"],
+    ["PR-DFC-005","NO-EXT-005"],["PR-DFC-005","FO-DFC-004"],["PR-DFC-005","PR-DFC-002"],
+    ["PR-PROV-001","NO-EXT-001"],["PR-PROV-001","GU-PROV-001"],["PR-PROV-001","PR-DFC-002"],
+    ["PR-DATIC-003","PO-DATIC-001"],
+    ["PO-DATIC-001","NO-EXT-003"],["PO-DATIC-001","NO-EXT-004"]
+  ]
+};
+
+/* ---------- Utilidades ---------- */
+var $ = function(id){ return document.getElementById(id); };
+var HOY = new Date(); HOY.setHours(0,0,0,0);
+var STOP = {"de":1,"la":1,"el":1,"los":1,"las":1,"y":1,"e":1,"o":1,"u":1,"en":1,"del":1,"al":1,"para":1,"por":1,"con":1,"un":1,"una":1,"a":1,"que":1,"se":1,"su":1,"sus":1,"lo":1,"n":1};
+
+function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }
+function sinTilde(ch){ return ch.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase(); }
+// Normaliza conservando la longitud (1 carácter -> 1 carácter) para poder resaltar sobre el texto original.
+function normChars(s){
+  s = String(s||""); var out = "";
+  for (var i=0;i<s.length;i++){ var n = sinTilde(s[i]); out += (n.length && /[a-z0-9]/.test(n[0])) ? n[0] : " "; }
+  return out;
+}
+function tokens(s){ return normChars(s).split(/\s+/).filter(Boolean); }
+function fecha(iso){ if(!iso) return "—"; var p = iso.split("-"); return p[2]+"/"+p[1]+"/"+p[0]; }
+function lev(a,b,max){
+  if (Math.abs(a.length-b.length)>max) return max+1;
+  var prev=[],cur=[],i,j;
+  for(j=0;j<=b.length;j++) prev[j]=j;
+  for(i=1;i<=a.length;i++){
+    cur=[i]; var best=i;
+    for(j=1;j<=b.length;j++){
+      cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+(a[i-1]===b[j-1]?0:1));
+      if(cur[j]<best) best=cur[j];
+    }
+    if(best>max) return max+1;
+    prev=cur;
+  }
+  return prev[b.length];
+}
+function parecido(q,t){
+  if (q.length<5 || /^\d+$/.test(q)) return false;
+  var max = q.length>=8 ? 2 : 1;
+  return lev(q,t,max)<=max || (t.length>q.length && lev(q,t.slice(0,q.length),max)<=max);
+}
+
+/* ---------- Estado de la aplicación ---------- */
+var DOCS=[], POR_CODIGO={}, DEP={}, SALIDA={}, ENTRADA={};
+var st = {q:"", f:{tipo:{},dependencia:{},proceso:{},estado:{}}, orden:"relevancia", visibles:POR_PAGINA, abierto:null, historial:[]};
+
+function preparar(data){
+  DEP = data.dependencias||{};
+  DOCS = data.documentos.map(function(d){
+    var e = "na", dias = null;
+    if (d.proxima_revision){
+      dias = Math.round((new Date(d.proxima_revision+"T00:00:00") - HOY)/864e5);
+      e = dias<0 ? "vencido" : (dias<=DIAS_AVISO ? "proximo" : "vigente");
+    }
+    var depNombre = DEP[d.dependencia]||d.dependencia;
+    var campos = [
+      {w:10, t:tokens(d.codigo).concat([normChars(d.codigo).replace(/\s/g,"")])},
+      {w:6,  t:tokens(d.titulo)},
+      {w:4,  t:tokens((d.palabras_clave||[]).join(" "))},
+      {w:3,  t:tokens((TIPOS[d.tipo]||{}).label+" "+(TIPOS[d.tipo]||{}).plural)},
+      {w:2,  t:tokens(depNombre+" "+d.dependencia)},
+      {w:2,  t:tokens(d.proceso)},
+      {w:1,  t:tokens(d.resumen)}
+    ];
+    return Object.assign({}, d, {estado:e, dias:dias, depNombre:depNombre, _campos:campos, _titulo:normChars(d.titulo), _compacto:normChars(d.codigo).replace(/\s/g,"")});
+  });
+  POR_CODIGO={}; SALIDA={}; ENTRADA={};
+  DOCS.forEach(function(d){ POR_CODIGO[d.codigo]=d; SALIDA[d.codigo]=[]; ENTRADA[d.codigo]=[]; });
+  (data.relaciones||[]).forEach(function(r){
+    var o = r.origen||r[0], dst = r.destino||r[1];
+    if (POR_CODIGO[o] && POR_CODIGO[dst] && SALIDA[o].indexOf(dst)<0){ SALIDA[o].push(dst); ENTRADA[dst].push(o); }
+  });
+}
+
+/* ---------- Búsqueda ---------- */
+function tokensConsulta(q){ return tokens(q).filter(function(t){ return !STOP[t] && (t.length>1 || /\d/.test(t)); }); }
+
+function puntuar(doc, qt){
+  var total=0, todos=true, alguno=false;
+  qt.forEach(function(q){
+    var best=0;
+    doc._campos.forEach(function(c){
+      c.t.forEach(function(t){
+        var s = 0;
+        if (t===q) s=3;
+        else if (t.indexOf(q)===0) s=2;
+        else if (q.length>=4 && t.indexOf(q)>0) s=1.2;
+        else if (parecido(q,t)) s=1;
+        if (s*c.w>best) best=s*c.w;
+      });
+    });
+    if (best>0) alguno=true; else todos=false;
+    total+=best;
+  });
+  return {score:total, todos:todos, alguno:alguno};
+}
+
+function buscar(){
+  var qt = tokensConsulta(st.q), frase = normChars(st.q).replace(/\s+/g," ").trim();
+  if (!qt.length) return {lista:DOCS.map(function(d){return {d:d,s:0};}), parcial:false, qt:qt};
+  var res = DOCS.map(function(d){
+    var p = puntuar(d,qt);
+    if (frase.length>3 && d._titulo.replace(/\s+/g," ").indexOf(frase)>=0) p.score+=15;
+    if (frase.replace(/\s/g,"")===d._compacto){ p.score+=100; p.todos=true; }
+    return {d:d, s:p.score, todos:p.todos, alguno:p.alguno};
+  });
+  var estrictos = res.filter(function(r){return r.todos;});
+  if (estrictos.length) return {lista:estrictos, parcial:false, qt:qt};
+  return {lista:res.filter(function(r){return r.alguno;}), parcial:true, qt:qt};
+}
+
+function pasaFiltros(d, excepto){
+  for (var k in st.f){
+    if (k===excepto) continue;
+    var sel = Object.keys(st.f[k]);
+    if (sel.length && !st.f[k][valorFaceta(d,k)]) return false;
+  }
+  return true;
+}
+function valorFaceta(d,k){ return k==="estado" ? d.estado : d[k]; }
+
+function ordenar(lista){
+  var o = st.orden, f;
+  if (o==="relevancia" && !tokensConsulta(st.q).length) o="codigo";
+  if (o==="relevancia") f=function(a,b){ return b.s-a.s || a.d.codigo.localeCompare(b.d.codigo); };
+  else if (o==="codigo") f=function(a,b){ return a.d.codigo.localeCompare(b.d.codigo,"es",{numeric:true}); };
+  else if (o==="titulo") f=function(a,b){ return a.d.titulo.localeCompare(b.d.titulo,"es"); };
+  else f=function(a,b){ var x=a.d.proxima_revision||"9999", y=b.d.proxima_revision||"9999"; return x.localeCompare(y); };
+  return lista.slice().sort(f);
+}
+
+function resaltar(texto, qt){
+  if (!qt || !qt.length) return esc(texto);
+  var n = normChars(texto), marcas = new Array(texto.length), m, re=/[a-z0-9]+/g;
+  while ((m=re.exec(n))){
+    var w=m[0], i=m.index;
+    qt.forEach(function(q){
+      var a=-1,len=0;
+      if (w.indexOf(q)===0){ a=i; len=q.length; }
+      else if (q.length>=4 && w.indexOf(q)>0){ a=i+w.indexOf(q); len=q.length; }
+      else if (parecido(q,w)){ a=i; len=w.length; }
+      for (var k=0;k<len;k++) marcas[a+k]=true;
+    });
+  }
+  var out="", dentro=false;
+  for (var j=0;j<texto.length;j++){
+    if (marcas[j] && !dentro){ out+="<mark>"; dentro=true; }
+    if (!marcas[j] && dentro){ out+="</mark>"; dentro=false; }
+    out+=esc(texto[j]);
+  }
+  return out+(dentro?"</mark>":"");
+}
+
+/* ---------- Render ---------- */
+function badgeTipo(d){ var t=TIPOS[d.tipo]||{label:d.tipo}; return '<span class="tipo">'+esc(t.label)+'</span>'; }
+function badgeEstado(d){ return '<span class="estado e-'+d.estado+'">'+ESTADOS[d.estado].label+'</span>'; }
+
+function renderFiltros(base){
+  var defs = [
+    ["tipo","Tipo de documento", Object.keys(TIPOS).map(function(k){return [k,TIPOS[k].plural,TIPOS[k].color];})],
+    ["estado","Estado", ["vigente","proximo","vencido","na"].map(function(k){return [k,ESTADOS[k].label];})],
+    ["proceso","Proceso", unicos("proceso").map(function(v){return [v,v];})],
+    ["dependencia","Dependencia responsable", unicos("dependencia").map(function(v){return [v,DEP[v]||v];})]
+  ];
+  var activos = Object.keys(st.f).some(function(k){return Object.keys(st.f[k]).length;});
+  var html = '<h2>Filtrar resultados '+(activos?'<button type="button" id="limpiarF">Quitar filtros</button>':'')+'</h2>';
+  defs.forEach(function(def){
+    var k=def[0];
+    html += '<fieldset><legend>'+def[1]+'</legend>';
+    def[2].forEach(function(o){
+      var c = base.filter(function(r){ return pasaFiltros(r.d,k) && valorFaceta(r.d,k)===o[0]; }).length;
+      var on = !!st.f[k][o[0]];
+      html += '<label class="opt'+(c||on?'':' zero')+'"><input type="checkbox" data-f="'+k+'" value="'+esc(o[0])+'"'+(on?' checked':'')+'>'+
+        '<span>'+esc(o[1])+'</span><span class="n">'+c+'</span></label>';
+    });
+    html += '</fieldset>';
+  });
+  $("filters").innerHTML = html;
+}
+function unicos(campo){
+  var s={}; DOCS.forEach(function(d){ s[d[campo]]=1; });
+  return Object.keys(s).sort(function(a,b){ return (DEP[a]||a).localeCompare(DEP[b]||b,"es"); });
+}
+
+function renderChips(){
+  var html="", n=0, nombres={tipo:function(v){return TIPOS[v].plural;},estado:function(v){return ESTADOS[v].label;},proceso:function(v){return v;},dependencia:function(v){return DEP[v]||v;}};
+  Object.keys(st.f).forEach(function(k){
+    Object.keys(st.f[k]).forEach(function(v){ n++; html+='<button type="button" class="chip" data-f="'+k+'" data-v="'+esc(v)+'" aria-label="Quitar filtro '+esc(nombres[k](v))+'">'+esc(nombres[k](v))+'</button>'; });
+  });
+  if (n>1) html+='<button type="button" class="chip all" id="limpiarChips">Quitar todos</button>';
+  $("chips").innerHTML = html;
+}
+
+function render(){
+  var r = buscar(), base = r.lista;
+  var lista = ordenar(base.filter(function(x){ return pasaFiltros(x.d); }));
+  renderFiltros(base); renderChips();
+  $("searchBox").classList.toggle("has-q", !!st.q);
+
+  var q = st.q.trim();
+  $("count").innerHTML = lista.length+' documento'+(lista.length===1?'':'s')+(q?' <small>para «'+esc(q)+'»</small>':' <small>en la guía maestra</small>');
+
+  var html="";
+  if (r.parcial && lista.length) html+='<div class="note">No hay documentos que contengan todas las palabras. Se muestran coincidencias parciales.</div>';
+  if (!lista.length){
+    html='<div class="empty"><b>No se encontraron documentos'+(q?' para «'+esc(q)+'»':'')+'.</b><br>Pruebe con otra palabra, revise la ortografía o quite algunos filtros.</div>';
+  }
+  // Tarjeta reducida: código y tipo · nombre · dependencia, versión y relaciones. El resto vive en la ficha.
+  var cards="";
+  lista.slice(0,st.visibles).forEach(function(x){
+    var d=x.d, t=TIPOS[d.tipo], nrel=SALIDA[d.codigo].length+ENTRADA[d.codigo].length;
+    cards += '<button type="button" class="card" data-doc="'+esc(d.codigo)+'">'+
+      '<div class="top"><span class="code">'+resaltar(d.codigo,r.qt)+'</span><span class="sep">·</span><span>'+esc(t.label)+'</span>'+badgeEstado(d)+'</div>'+
+      '<h3>'+resaltar(d.titulo,r.qt)+'</h3>'+
+      '<div class="meta"><span>'+resaltar(d.depNombre,r.qt)+'</span>'+
+      (d.tipo!=="NO"?'<span>Versión '+esc(d.version)+'</span>':'')+
+      (nrel?'<span>'+nrel+' relacionado'+(nrel===1?'':'s')+'</span>':'')+'</div>'+
+      '</button>';
+  });
+  if (cards) html += '<div class="list">'+cards+'</div>';
+  if (lista.length>st.visibles) html+='<button type="button" class="more" id="more">Mostrar más ('+(lista.length-st.visibles)+' restantes)</button>';
+  $("results").innerHTML = html;
+}
+
+/* ---------- Ficha y mapa de relaciones ---------- */
+function mapa(d){
+  var sal = SALIDA[d.codigo], ent = ENTRADA[d.codigo].filter(function(c){ return sal.indexOf(c)<0; });
+  var nodos = sal.map(function(c){return {c:c,dir:"sal"};}).concat(ent.map(function(c){return {c:c,dir:"ent"};}));
+  if (!nodos.length) return '<p class="hint">Este documento todavía no tiene relaciones registradas.</p>';
+  var extra = 0; if (nodos.length>12){ extra=nodos.length-12; nodos=nodos.slice(0,12); }
+  var W=560,H=320,cx=W/2,cy=H/2,rx=205,ry=115, s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Mapa de relaciones de '+esc(d.codigo)+'">';
+  s+='<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8a98a8"/></marker></defs>';
+  var pos = nodos.map(function(n,i){ var a=-Math.PI/2+i*2*Math.PI/nodos.length; return {x:cx+rx*Math.cos(a), y:cy+ry*Math.sin(a), n:n}; });
+  pos.forEach(function(p){
+    var dx=p.x-cx, dy=p.y-cy, L=Math.sqrt(dx*dx+dy*dy), ux=dx/L, uy=dy/L;
+    var x1=cx+ux*62, y1=cy+uy*26, x2=p.x-ux*52, y2=p.y-uy*18;
+    if (p.n.dir==="ent"){ var tx=x1,ty=y1; x1=x2;y1=y2;x2=tx;y2=ty; }
+    s+='<line x1="'+x1.toFixed(1)+'" y1="'+y1.toFixed(1)+'" x2="'+x2.toFixed(1)+'" y2="'+y2.toFixed(1)+'" stroke="#8a98a8" stroke-width="1.5"'+(p.n.dir==="ent"?' stroke-dasharray="5 4"':'')+' marker-end="url(#ar)"/>';
+  });
+  var tc = "#002855";
+  s+='<rect x="'+(cx-66)+'" y="'+(cy-24)+'" width="132" height="48" rx="10" fill="'+tc+'"/>';
+  s+='<text x="'+cx+'" y="'+(cy+5)+'" text-anchor="middle" font-size="14" font-weight="700" fill="#fff" font-family="Roboto,Arial,sans-serif">'+esc(d.codigo)+'</text>';
+  pos.forEach(function(p){
+    var o=POR_CODIGO[p.n.c], col=(o.tipo==="NO"?"#EF3340":"#0B4A8B");
+    s+='<g class="node" data-doc="'+esc(o.codigo)+'" tabindex="0" role="button" aria-label="'+esc(o.codigo+" "+o.titulo)+'"><title>'+esc(o.titulo)+'</title>'+
+      '<rect x="'+(p.x-54).toFixed(1)+'" y="'+(p.y-16).toFixed(1)+'" width="108" height="32" rx="7" fill="#fff" stroke="'+col+'" stroke-width="1.5"/>'+
+      '<rect x="'+(p.x-54).toFixed(1)+'" y="'+(p.y-16).toFixed(1)+'" width="6" height="32" rx="3" fill="'+col+'"/>'+
+      '<text x="'+(p.x+3).toFixed(1)+'" y="'+(p.y+4.5).toFixed(1)+'" text-anchor="middle" font-size="12" font-weight="600" fill="#1d2733" font-family="Roboto,Arial,sans-serif">'+esc(o.codigo)+'</text></g>';
+  });
+  if (extra) s+='<text x="'+(W-10)+'" y="'+(H-8)+'" text-anchor="end" font-size="12" fill="#5b6878">+'+extra+' más en la lista</text>';
+  s+='</svg>';
+  return s+'<div class="legend"><span>── Este documento lo utiliza o se fundamenta en él</span><span>- - - Lo referencia</span><span style="color:#C4202E">▌ Normativa</span><span>Toque un documento para abrirlo</span></div>';
+}
+
+function itemRel(o){
+  return '<button type="button" class="rel" data-doc="'+esc(o.codigo)+'">'+
+    '<span style="flex:1;min-width:0"><b>'+esc(o.titulo)+'</b><small>'+esc(o.codigo)+' · '+esc(TIPOS[o.tipo].label)+'</small></span>'+
+    (o.tipo!=="NO"?badgeEstado(o):'')+'</button>';
+}
+
+function textoEstado(d){
+  if (d.estado==="na") return "Documento de referencia sin fecha de revisión en esta guía.";
+  if (d.estado==="vencido") return "La revisión venció hace "+(-d.dias)+" día"+(d.dias===-1?"":"s")+" ("+fecha(d.proxima_revision)+").";
+  if (d.estado==="proximo") return "La revisión vence en "+d.dias+" día"+(d.dias===1?"":"s")+" ("+fecha(d.proxima_revision)+").";
+  return "Vigente hasta la próxima revisión, el "+fecha(d.proxima_revision)+".";
+}
+
+// modo: "nuevo" (desde resultados), "nav" (desde la ficha, guarda historial), "atras"
+function abrir(codigo, modo){
+  var d = POR_CODIGO[codigo]; if (!d) return;
+  if (modo==="nav" && st.abierto && st.abierto!==codigo) st.historial.push(st.abierto);
+  if (modo==="nuevo") st.historial=[];
+  st.abierto = codigo;
+  var grupos="";
+  GRUPOS_REL.forEach(function(g){
+    var items = SALIDA[codigo].map(function(c){return POR_CODIGO[c];}).filter(function(o){return o.tipo===g[0];});
+    if (items.length) grupos += '<h4>'+g[1]+' ('+items.length+')</h4>'+items.map(itemRel).join("");
+  });
+  var refs = ENTRADA[codigo].map(function(c){return POR_CODIGO[c];});
+  if (refs.length) grupos += '<h4>Referenciado por ('+refs.length+')</h4>'+refs.map(itemRel).join("");
+
+  var atras = st.historial.length ? '<button type="button" class="back" id="atras">← '+esc(st.historial[st.historial.length-1])+'</button>' : '';
+  $("drawer").innerHTML =
+    '<div class="dhead">'+atras+'<span class="code">'+esc(d.codigo)+'</span><button type="button" class="x" id="cerrar" aria-label="Cerrar ficha">×</button></div>'+
+    '<div class="dbody">'+
+      '<div class="top">'+badgeTipo(d)+badgeEstado(d)+'</div>'+
+      '<h2 id="dTitle">'+esc(d.titulo)+'</h2>'+
+      '<p class="aviso">'+textoEstado(d)+'</p>'+
+      '<p>'+esc(d.resumen)+'</p>'+
+      '<div class="grid">'+
+        '<div><span>Código</span><b>'+esc(d.codigo)+'</b></div>'+
+        '<div><span>Tipo</span><b>'+esc(TIPOS[d.tipo].label)+'</b></div>'+
+        '<div><span>Dependencia responsable</span><b>'+esc(d.depNombre)+'</b></div>'+
+        '<div><span>Proceso</span><b>'+esc(d.proceso)+'</b></div>'+
+        (d.tipo!=="NO"?'<div><span>Versión vigente</span><b>'+esc(d.version)+'</b></div>'+
+        '<div><span>Fecha de aprobación</span><b>'+fecha(d.fecha_aprobacion)+'</b></div>'+
+        '<div><span>Próxima revisión</span><b>'+fecha(d.proxima_revision)+'</b></div>':'')+
+      '</div>'+
+      (d.palabras_clave&&d.palabras_clave.length?'<div class="kw">'+d.palabras_clave.map(function(k){return '<span>'+esc(k)+'</span>';}).join("")+'</div>':'')+
+      '<div class="acts"><button type="button" class="btn" id="abrirDoc">Abrir documento oficial</button><button type="button" class="btn sec" id="copiar">Copiar enlace</button></div>'+
+      '<p class="hint">En la versión final, el botón abre el PDF publicado en el repositorio institucional.</p>'+
+      '<h4>Mapa de relaciones</h4><div class="map">'+mapa(d)+'</div>'+
+      grupos+
+    '</div>';
+  $("overlay").classList.add("open");
+  var dr=$("drawer"); dr.classList.add("open"); dr.setAttribute("aria-hidden","false"); dr.scrollTop=0;
+  try{ history.replaceState(null,"","#doc="+encodeURIComponent(codigo)); }catch(e){}
+  setTimeout(function(){ var b=$("cerrar"); if(b) b.focus(); },50);
+}
+function cerrar(){
+  if (!st.abierto) return;
+  var prev = st.abierto;
+  st.abierto=null; st.historial=[];
+  $("overlay").classList.remove("open");
+  var dr=$("drawer"); dr.classList.remove("open"); dr.setAttribute("aria-hidden","true");
+  try{ history.replaceState(null,"",location.pathname+location.search); }catch(e){}
+  var card = document.querySelector('.gmd .card[data-doc="'+prev+'"]'); if (card) card.focus();
+}
+function aviso(t){ var el=$("toast"); el.textContent=t; el.classList.add("show"); clearTimeout(aviso._t); aviso._t=setTimeout(function(){el.classList.remove("show");},1800); }
+
+/* ---------- Eventos ---------- */
+function eventos(){
+  var timer;
+  $("q").addEventListener("input", function(e){ clearTimeout(timer); timer=setTimeout(function(){ st.q=e.target.value; st.visibles=POR_PAGINA; st.orden=st.q.trim()?"relevancia":st.orden; $("orden").value=st.orden; render(); },120); });
+  $("clearQ").addEventListener("click", function(){ $("q").value=""; st.q=""; render(); $("q").focus(); });
+  $("orden").addEventListener("change", function(e){ st.orden=e.target.value; render(); });
+  $("toggleFilters").addEventListener("click", function(){ var f=$("filters"), o=f.classList.toggle("open"); this.setAttribute("aria-expanded",o); });
+
+  ["vacaciones","beca","viáticos","PR-OPI-001","control interno","contratacion"].forEach(function(ej){
+    var b=document.createElement("button"); b.type="button"; b.textContent=ej;
+    b.addEventListener("click",function(){ $("q").value=ej; st.q=ej; st.orden="relevancia"; $("orden").value="relevancia"; st.visibles=POR_PAGINA; render(); });
+    $("ejemplos").appendChild(b);
+  });
+
+  $("filters").addEventListener("change", function(e){
+    var i=e.target; if(!i.dataset.f) return;
+    if (i.checked) st.f[i.dataset.f][i.value]=1; else delete st.f[i.dataset.f][i.value];
+    st.visibles=POR_PAGINA; render();
+  });
+  ROOT.addEventListener("click", function(e){
+    var t=e.target.closest("button, g.node"); if(!t) return;
+    if (t.id==="limpiarF"||t.id==="limpiarChips"){ for(var k in st.f) st.f[k]={}; render(); return; }
+    if (t.classList.contains("chip") && t.dataset.f){ delete st.f[t.dataset.f][t.dataset.v]; render(); return; }
+    if (t.id==="more"){ st.visibles+=POR_PAGINA; render(); return; }
+    if (t.id==="cerrar"){ cerrar(); return; }
+    if (t.id==="atras"){ abrir(st.historial.pop(),"atras"); return; }
+    if (t.id==="abrirDoc"){ aviso("Prototipo: aquí se abriría el PDF oficial."); return; }
+    if (t.id==="copiar"){ var url=location.href; try{ navigator.clipboard.writeText(url).then(function(){aviso("Enlace copiado");},function(){aviso("Enlace: "+url);}); }catch(err){ aviso("Enlace: "+url); } return; }
+    if (t.dataset.doc){ abrir(t.dataset.doc, t.closest(".drawer") ? "nav" : "nuevo"); }
+  });
+  $("drawer").addEventListener("keydown", function(e){
+    var n=e.target.closest && e.target.closest("g.node");
+    if (n && (e.key==="Enter"||e.key===" ")){ e.preventDefault(); abrir(n.dataset.doc,"nav"); }
+  });
+  $("overlay").addEventListener("click", cerrar);
+  document.addEventListener("keydown", function(e){
+    if (e.key==="Escape") cerrar();
+    if (e.key==="/" && document.activeElement!==$("q") && !/input|select|textarea/i.test(document.activeElement.tagName)){ e.preventDefault(); $("q").focus(); }
+  });
+}
+
+/* ---------- Inicio ---------- */
+var ROOT = $("sigeca-gmd");
+function iniciar(data){
+  preparar(data); eventos(); render();
+  var m = location.hash.match(/doc=([^&]+)/);
+  if (m) abrir(decodeURIComponent(m[1]), "nuevo");
+}
+if (DATA_URL){
+  fetch(DATA_URL).then(function(r){ return r.json(); }).then(iniciar).catch(function(){
+    $("results").innerHTML='<div class="empty">No se pudo cargar la lista maestra de documentos.</div>';
+  });
+} else iniciar(EJEMPLO);
+
+})();
+</script>
+</body>
+</html>
