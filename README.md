@@ -13,6 +13,8 @@ Permite buscar procedimientos, políticas, manuales, guías, instructivos, formu
 | Archivo | Descripción |
 | --- | --- |
 | `index.html` | Página autocontenida (HTML, CSS y JavaScript sin librerías). Incluye datos de ejemplo. |
+| `roadmap/index.html` | Tablero del roadmap del proyecto, con modo de edición. |
+| `roadmap/roadmap.json` | Datos del roadmap: fases, tareas, hitos, observaciones, riesgos y calendario. |
 
 ## Cómo funciona
 
@@ -46,3 +48,26 @@ En el script de `index.html`, la constante `DATA_URL` apunta al archivo de datos
 ```
 
 Cada relación se registra una vez, de origen a destino; la página calcula el sentido inverso ("referenciado por").
+
+## Roadmap del proyecto
+
+**Página publicada:** https://sermena.github.io/sigeca-datos/roadmap/
+
+Muestra el avance esperado semana a semana frente al avance real (tareas cumplidas), por fase, hito, observación y riesgo. Todo el contenido vive en `roadmap/roadmap.json`.
+
+### Editar el plan
+
+1. Abra la página y pulse **Editar plan** (o entre a `roadmap/#editar`).
+2. Cambie lo que necesite: duración, espera previa y dependencias de cada fase, tareas (y cuáles están cumplidas), insumos, entregables, hitos, notas de avance, observaciones, riesgos, fecha de inicio y recesos. Las fases se reprograman solas según sus dependencias.
+3. Los cambios quedan como borrador en su navegador hasta que pulse **Guardar en GitHub** o **Descartar cambios**.
+
+Para guardar desde la página se necesita un token personal de GitHub (una sola vez por navegador):
+
+1. En GitHub, vaya a *Settings › Developer settings › Personal access tokens › Fine-grained tokens › Generate new token*.
+2. En *Repository access*, elija **Only select repositories** y marque `sermena/sigeca-datos`.
+3. En *Permissions › Repository permissions*, ponga **Contents: Read and write**.
+4. Copie el token y péguelo en *Configuración › Guardar en GitHub* dentro de la página. Use **Probar conexión** para verificarlo.
+
+Cada guardado crea un commit en `main` y GitHub Pages publica la nueva versión en uno o dos minutos. Si alguien guardó otra versión mientras usted editaba, la página avisa y le deja elegir entre sobrescribir o cargar la versión de GitHub.
+
+Sin token, use **Descargar JSON** y suba el archivo a la carpeta `roadmap/` del repositorio desde la web de GitHub (*Add file › Upload files*).

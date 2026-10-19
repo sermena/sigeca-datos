@@ -1,0 +1,589 @@
+{
+  "version": 1,
+  "rev": 1,
+  "actualizado": "2026-10-19",
+  "proyecto": {
+    "titulo": "Roadmap hacia la puesta en producción",
+    "descripcion": "Fases y semanas de trabajo, del prototipo actual a la guía publicada en el sitio del TEC. Mueva la barra de semanas para ver cuánto avance se espera en cada momento."
+  },
+  "calendario": {
+    "inicio": null,
+    "pausas": []
+  },
+  "fases": [
+    {
+      "id": "f0",
+      "nombre": "Alineación y decisiones de base",
+      "semanas": 3,
+      "depende": [],
+      "objetivo": "Cerrar las decisiones que definen el modelo de datos y la plataforma.",
+      "insumos": [
+        "Nomenclatura del inventario documental (por revisar)",
+        "Mapeo de procesos 2026",
+        "Presentación El ABC de SIGECA",
+        "Observaciones del funcionario",
+        "Prototipo actual"
+      ],
+      "entregables": [
+        "Acta de decisiones",
+        "Alcance de la versión 1",
+        "Matriz de roles"
+      ],
+      "tareas": [
+        {
+          "id": "f0-1",
+          "texto": "Presentar las brechas B1–B4 y obtener la jerarquía oficial (N0, N1, N2) y el formato del código de subproceso",
+          "hecha": false
+        },
+        {
+          "id": "f0-2",
+          "texto": "Confirmar las 10 tipologías de apoyo, el nombre del nivel 4 y si Políticas es un tipo",
+          "hecha": false
+        },
+        {
+          "id": "f0-3",
+          "texto": "Definir ciclo de vida, periodicidad de revisión y días de aviso",
+          "hecha": false
+        },
+        {
+          "id": "f0-4",
+          "texto": "Definir la política de copias no controladas y la visibilidad del histórico de derogados",
+          "hecha": false
+        },
+        {
+          "id": "f0-5",
+          "texto": "Definir plataforma: ruta en tec.ac.cr, repositorio de archivos oficiales y responsable de la lista maestra",
+          "hecha": false
+        },
+        {
+          "id": "f0-6",
+          "texto": "Elegir 1–2 procesos piloto con documentos aprobados",
+          "hecha": false
+        },
+        {
+          "id": "f0-7",
+          "texto": "Redactar el acta de alcance v1 y la matriz de roles",
+          "hecha": false
+        }
+      ],
+      "hito": {
+        "nombre": "Decisiones aprobadas",
+        "criterio": "B1, B2 y B3 resueltas (jerarquía, tipologías y códigos) y plataforma definida; acta aprobada por la coordinación del SIGECA."
+      },
+      "nota": null
+    },
+    {
+      "id": "f1",
+      "nombre": "Modelo de datos y lista maestra",
+      "semanas": 4,
+      "depende": [
+        "f0"
+      ],
+      "objetivo": "Una sola fuente de verdad, depurada, con los campos que piden las seis observaciones.",
+      "insumos": [
+        "Acta de la fase 0",
+        "Mapeo de procesos 2026",
+        "Listado oficial de siglas de dependencias (Centro de Archivo y Comunicaciones)",
+        "Documentos del piloto"
+      ],
+      "entregables": [
+        "Mapeo depurado",
+        "Diccionario de datos",
+        "Plantilla de carga",
+        "Script de validación y exportación"
+      ],
+      "tareas": [
+        {
+          "id": "f1-1",
+          "texto": "Depurar el mapeo: duplicados, espacios, procesos huérfanos, nombres distintos y totales; validar con la OPI",
+          "hecha": false
+        },
+        {
+          "id": "f1-2",
+          "texto": "Agregar a los 20 macroprocesos su categoría (estratégico, misional, apoyo, control)",
+          "hecha": false
+        },
+        {
+          "id": "f1-3",
+          "texto": "Diseñar las tablas Jerarquía, Documentos, Relaciones, Versiones y Dependencias",
+          "hecha": false
+        },
+        {
+          "id": "f1-4",
+          "texto": "Escribir el diccionario de datos y las reglas de validación",
+          "hecha": false
+        },
+        {
+          "id": "f1-5",
+          "texto": "Crear la plantilla de carga con listas desplegables",
+          "hecha": false
+        },
+        {
+          "id": "f1-6",
+          "texto": "Programar la validación y la exportación automática al archivo que lee la página",
+          "hecha": false
+        }
+      ],
+      "hito": {
+        "nombre": "Lista maestra aprobada",
+        "criterio": "Cero errores de validación en el mapeo y plantilla probada con 10 documentos reales."
+      },
+      "nota": null
+    },
+    {
+      "id": "f2",
+      "nombre": "Prototipo v2 y validación con usuarios",
+      "semanas": 5,
+      "depende": [
+        "f0"
+      ],
+      "objetivo": "Rediseñar la interfaz con las observaciones y la marca TEC, y validarla antes de construir.",
+      "insumos": [
+        "Observaciones del funcionario",
+        "Manual de Identidad Institucional",
+        "Acta de la fase 0",
+        "Borrador del modelo de datos"
+      ],
+      "entregables": [
+        "Prototipo v2 con datos de ejemplo en formato oficial",
+        "Informe de pruebas con usuarios"
+      ],
+      "tareas": [
+        {
+          "id": "f2-1",
+          "texto": "Portada: buscador, accesos por tipología, mapa de macroprocesos y actualizaciones recientes",
+          "hecha": false
+        },
+        {
+          "id": "f2-2",
+          "texto": "Ficha: ruta jerárquica, nivel N0–N4, árbol de documentos, estado, historial de versiones y descarga",
+          "hecha": false
+        },
+        {
+          "id": "f2-3",
+          "texto": "Vista Histórico de documentos derogados",
+          "hecha": false
+        },
+        {
+          "id": "f2-4",
+          "texto": "Aplicar el Manual de Identidad y accesibilidad (WCAG 2.1 AA, móvil)",
+          "hecha": false
+        },
+        {
+          "id": "f2-5",
+          "texto": "Probar con 5–6 usuarios con tareas reales",
+          "hecha": false
+        },
+        {
+          "id": "f2-6",
+          "texto": "Ajustar según los hallazgos",
+          "hecha": false
+        }
+      ],
+      "hito": {
+        "nombre": "Prototipo v2 aprobado",
+        "criterio": "Las seis observaciones atendidas y la mayoría de las tareas de prueba completadas sin ayuda."
+      },
+      "nota": null
+    },
+    {
+      "id": "f3",
+      "nombre": "Construcción de la versión 1",
+      "semanas": 6,
+      "depende": [
+        "f1",
+        "f2"
+      ],
+      "objetivo": "Pasar del prototipo a una aplicación mantenible, conectada a datos reales.",
+      "insumos": [
+        "Prototipo v2",
+        "Lista maestra",
+        "Plataforma definida",
+        "Acceso al repositorio de archivos oficiales"
+      ],
+      "entregables": [
+        "Versión 1 en ambiente de pruebas",
+        "Manual de administración",
+        "Código versionado"
+      ],
+      "tareas": [
+        {
+          "id": "f3-1",
+          "texto": "Conectar la página a la exportación de la lista maestra",
+          "hecha": false
+        },
+        {
+          "id": "f3-2",
+          "texto": "Implementar el flujo de publicación: alta, nueva versión y derogación, con revisión de una segunda persona",
+          "hecha": false
+        },
+        {
+          "id": "f3-3",
+          "texto": "Estampar la marca de agua en los PDF (COPIA NO CONTROLADA u OBSOLETO)",
+          "hecha": false
+        },
+        {
+          "id": "f3-4",
+          "texto": "Enlazar cada ficha al archivo oficial del repositorio controlado",
+          "hecha": false
+        },
+        {
+          "id": "f3-5",
+          "texto": "Probar el rendimiento con unos 2500 registros",
+          "hecha": false
+        },
+        {
+          "id": "f3-6",
+          "texto": "Integrar la página en tec.ac.cr en un ambiente de pruebas",
+          "hecha": false
+        },
+        {
+          "id": "f3-7",
+          "texto": "Escribir el manual de administración",
+          "hecha": false
+        }
+      ],
+      "hito": {
+        "nombre": "Versión 1 funcional",
+        "criterio": "Flujo de alta, actualización y derogación probado de punta a punta y marca de agua verificada."
+      },
+      "nota": null
+    },
+    {
+      "id": "f4",
+      "nombre": "Piloto con datos reales",
+      "semanas": 4,
+      "depende": [
+        "f3"
+      ],
+      "objetivo": "Comprobar con documentos reales que la guía y el flujo de mantenimiento funcionan.",
+      "insumos": [
+        "Versión 1",
+        "Inventario documental de los procesos piloto",
+        "Dueños de proceso"
+      ],
+      "entregables": [
+        "Piloto cargado",
+        "Registro de incidencias resuelto"
+      ],
+      "tareas": [
+        {
+          "id": "f4-1",
+          "texto": "Inventariar y codificar los documentos del piloto según la nomenclatura",
+          "hecha": false
+        },
+        {
+          "id": "f4-2",
+          "texto": "Cargar documentos, relaciones e historial disponible",
+          "hecha": false
+        },
+        {
+          "id": "f4-3",
+          "texto": "Capacitar a 2–3 personas que mantendrán la lista maestra",
+          "hecha": false
+        },
+        {
+          "id": "f4-4",
+          "texto": "Uso real por funcionarios del proceso durante 2 semanas; registrar incidencias",
+          "hecha": false
+        },
+        {
+          "id": "f4-5",
+          "texto": "Corregir y ajustar",
+          "hecha": false
+        }
+      ],
+      "hito": {
+        "nombre": "Piloto aceptado",
+        "criterio": "Aceptación del dueño del proceso piloto y de la coordinación del SIGECA."
+      },
+      "nota": null
+    },
+    {
+      "id": "f5",
+      "nombre": "Pruebas finales y aprobación",
+      "semanas": 3,
+      "depende": [
+        "f4"
+      ],
+      "objetivo": "Demostrar que la guía está lista para todo el TEC.",
+      "insumos": [
+        "Versión 1 ajustada",
+        "Casos de prueba",
+        "Apoyo de DATIC"
+      ],
+      "entregables": [
+        "Informe de pruebas",
+        "Acta de aprobación de salida"
+      ],
+      "tareas": [
+        {
+          "id": "f5-1",
+          "texto": "Pruebas funcionales, de accesibilidad, en móvil y en varios navegadores",
+          "hecha": false
+        },
+        {
+          "id": "f5-2",
+          "texto": "Revisión básica de seguridad con DATIC",
+          "hecha": false
+        },
+        {
+          "id": "f5-3",
+          "texto": "Verificar que cada documento publicado coincide con su versión aprobada",
+          "hecha": false
+        },
+        {
+          "id": "f5-4",
+          "texto": "Corregir incidencias",
+          "hecha": false
+        },
+        {
+          "id": "f5-5",
+          "texto": "Presentar resultados a la coordinación del SIGECA",
+          "hecha": false
+        }
+      ],
+      "hito": {
+        "nombre": "Aprobación de salida",
+        "criterio": "Aprobación formal de la puesta en producción por la coordinación del SIGECA."
+      },
+      "nota": null
+    },
+    {
+      "id": "f6",
+      "nombre": "Puesta en producción",
+      "semanas": 2,
+      "depende": [
+        "f5"
+      ],
+      "objetivo": "Publicar la guía en su ruta definitiva y entregarla a quien la mantendrá.",
+      "insumos": [
+        "Acta de aprobación",
+        "Accesos al sitio",
+        "Plan de comunicación"
+      ],
+      "entregables": [
+        "Guía publicada",
+        "Acta de entrega"
+      ],
+      "tareas": [
+        {
+          "id": "f6-1",
+          "texto": "Publicar en tec.ac.cr y verificar enlaces, descargas y marcas de agua",
+          "hecha": false
+        },
+        {
+          "id": "f6-2",
+          "texto": "Tener listo el plan de reversión",
+          "hecha": false
+        },
+        {
+          "id": "f6-3",
+          "texto": "Anunciar el lanzamiento con la oficina de comunicación institucional",
+          "hecha": false
+        },
+        {
+          "id": "f6-4",
+          "texto": "Entregar código, manual, accesos y responsable de mantenimiento",
+          "hecha": false
+        }
+      ],
+      "hito": {
+        "nombre": "Guía en producción",
+        "criterio": "Guía publicada en su ruta definitiva y entregada a su responsable de mantenimiento."
+      },
+      "nota": null
+    }
+  ],
+  "observaciones": [
+    {
+      "id": "o1",
+      "titulo": "Espacio para documentos derogados u obsoletos",
+      "solucion": "Sección Histórico separada de la búsqueda normal; cada derogado conserva fecha, oficio y reemplazo como evidencia de auditoría.",
+      "fases": [
+        "f0",
+        "f1",
+        "f3"
+      ]
+    },
+    {
+      "id": "o2",
+      "titulo": "Documentos en proceso de revisión",
+      "solucion": "Ciclo de vida (En elaboración, En actualización, Vigente, Derogado) separado de la alerta de revisión periódica.",
+      "fases": [
+        "f1",
+        "f2"
+      ]
+    },
+    {
+      "id": "o3",
+      "titulo": "Distinción visual de la jerarquía documental",
+      "solucion": "Ruta Macroproceso › Proceso › Subproceso › Procedimiento › Apoyo, etiqueta de nivel N0–N4 y árbol desplegable.",
+      "fases": [
+        "f0",
+        "f2"
+      ]
+    },
+    {
+      "id": "o4",
+      "titulo": "Búsqueda por tipología y mapa de macroprocesos",
+      "solucion": "Portada con accesos por tipología documental; el mapa de macroprocesos en cajitas para navegar por proceso.",
+      "fases": [
+        "f0",
+        "f2"
+      ]
+    },
+    {
+      "id": "o5",
+      "titulo": "Marca de agua COPIA NO CONTROLADA",
+      "solucion": "Se estampa en los PDF al publicar; los derogados llevan OBSOLETO. Formatos editables con leyenda en el pie.",
+      "fases": [
+        "f0",
+        "f3"
+      ]
+    },
+    {
+      "id": "o6",
+      "titulo": "Control de cambios y actualizaciones",
+      "solucion": "Historial de versiones en cada ficha y bloque de actualizaciones recientes en la portada.",
+      "fases": [
+        "f1",
+        "f3"
+      ]
+    }
+  ],
+  "riesgos": [
+    {
+      "id": "R1",
+      "riesgo": "La nomenclatura (jerarquía, códigos, tipologías) no se aprueba dentro de la fase 0",
+      "todas": false,
+      "fases": [
+        "f0"
+      ],
+      "prob": "Alta",
+      "impacto": "Alto",
+      "mitigacion": "Llevar opciones concretas con su efecto; guardar el código como campo configurable",
+      "responsable": "Coordinación SIGECA"
+    },
+    {
+      "id": "R2",
+      "riesgo": "Las dependencias no tienen claro cuál es la versión vigente de sus documentos",
+      "todas": false,
+      "fases": [
+        "f1",
+        "f4"
+      ],
+      "prob": "Alta",
+      "impacto": "Alto",
+      "mitigacion": "Piloto con procesos maduros; solo se publica lo que tiene aprobación documentada",
+      "responsable": "Dueños de proceso"
+    },
+    {
+      "id": "R3",
+      "riesgo": "No hay responsable de mantener la lista maestra después de producción",
+      "todas": false,
+      "fases": [
+        "f0",
+        "f6"
+      ],
+      "prob": "Media",
+      "impacto": "Alto",
+      "mitigacion": "Nombrarlo en la matriz de roles; condición para el hito H5",
+      "responsable": "Coordinación SIGECA"
+    },
+    {
+      "id": "R4",
+      "riesgo": "El sitio tec.ac.cr no admite scripts o iframes",
+      "todas": false,
+      "fases": [
+        "f3"
+      ],
+      "prob": "Media",
+      "impacto": "Alto",
+      "mitigacion": "Reunión técnica en la fase 0; página autocontenida; alternativa: subdominio institucional",
+      "responsable": "Desarrollo, administración web"
+    },
+    {
+      "id": "R5",
+      "riesgo": "Se publican documentos internos o derogados que no deberían ser públicos",
+      "todas": false,
+      "fases": [
+        "f1",
+        "f3"
+      ],
+      "prob": "Media",
+      "impacto": "Alto",
+      "mitigacion": "Campo de visibilidad (público o interno) y decisión sobre el histórico en la fase 0",
+      "responsable": "Coordinación SIGECA"
+    },
+    {
+      "id": "R6",
+      "riesgo": "Inconsistencias del mapeo de procesos (B4)",
+      "todas": false,
+      "fases": [
+        "f1"
+      ],
+      "prob": "Alta",
+      "impacto": "Medio",
+      "mitigacion": "Script de validación; cada corrección validada con la OPI",
+      "responsable": "Desarrollo, OPI"
+    },
+    {
+      "id": "R7",
+      "riesgo": "Recesos institucionales y cierres de semestre alargan el plazo calendario",
+      "todas": true,
+      "fases": [],
+      "prob": "Alta",
+      "impacto": "Medio",
+      "mitigacion": "Registrar las pausas en este tablero; no ubicar pruebas con usuarios en cierre de semestre",
+      "responsable": "Desarrollo"
+    },
+    {
+      "id": "R8",
+      "riesgo": "Disponibilidad parcial del desarrollador",
+      "todas": true,
+      "fases": [],
+      "prob": "Media",
+      "impacto": "Medio",
+      "mitigacion": "Entregables pequeños por fase; código y decisiones documentados",
+      "responsable": "Desarrollo"
+    },
+    {
+      "id": "R9",
+      "riesgo": "Nuevas solicitudes después del prototipo v2",
+      "todas": false,
+      "fases": [
+        "f2",
+        "f3"
+      ],
+      "prob": "Media",
+      "impacto": "Medio",
+      "mitigacion": "Acta de alcance v1; lo nuevo va a una lista de mejoras v1.x",
+      "responsable": "Coordinación SIGECA"
+    },
+    {
+      "id": "R10",
+      "riesgo": "Formatos editables sin marca de agua confiable",
+      "todas": false,
+      "fases": [
+        "f3"
+      ],
+      "prob": "Alta",
+      "impacto": "Bajo",
+      "mitigacion": "Leyenda en el pie del archivo y en la ficha; política de copia controlada",
+      "responsable": "Coordinación SIGECA"
+    },
+    {
+      "id": "R11",
+      "riesgo": "Rendimiento con 2000 o más documentos",
+      "todas": false,
+      "fases": [
+        "f3"
+      ],
+      "prob": "Baja",
+      "impacto": "Medio",
+      "mitigacion": "Prueba con unos 2500 registros; paginación; carga por partes",
+      "responsable": "Desarrollo"
+    }
+  ]
+}
